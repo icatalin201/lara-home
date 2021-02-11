@@ -16,11 +16,14 @@ public class RoomPortImpl implements RoomPort {
 
   @Override
   public Mono<Room> create(Room room) {
-    return roomRepository.create(room);
+    room.setId(UUID.randomUUID());
+    Room createdRoom = roomRepository.create(room);
+    return Mono.just(createdRoom);
   }
 
   @Override
   public Mono<Room> findById(UUID id) {
-    return roomRepository.findById(id);
+    Room room = roomRepository.findById(id);
+    return Mono.just(room);
   }
 }

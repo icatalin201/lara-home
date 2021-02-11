@@ -1,13 +1,12 @@
-package com.smart.home.lara;
+package com.smart.home.lara.repo;
 
 import com.smart.home.lara.core.application.port.secondary.FeatureRepository;
 import com.smart.home.lara.core.domain.Feature;
 import com.smart.home.lara.core.domain.FeatureData;
-import com.smart.home.lara.repository.FeatureInMemoryRepository;
+import com.smart.home.lara.repo.repository.FeatureInMemoryRepository;
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
+import java.util.List;
 import java.util.UUID;
 
 /** lara Created by Catalin on 2/11/2021 */
@@ -17,17 +16,22 @@ public class FeatureRepositoryAdapter implements FeatureRepository {
   private final FeatureInMemoryRepository featureInMemoryRepository;
 
   @Override
-  public Flux<Feature> findAllByRoom(UUID roomId) {
+  public Feature create(Feature feature) {
+    return featureInMemoryRepository.create(feature);
+  }
+
+  @Override
+  public List<Feature> findAllByRoom(UUID roomId) {
     return featureInMemoryRepository.findAllByRoom(roomId);
   }
 
   @Override
-  public Mono<FeatureData> findLatestDataForFeature(UUID featureId) {
-    return featureInMemoryRepository.findLatestDataForFeature(featureId);
+  public List<FeatureData> findAllDataByFeature(UUID featureId) {
+    return featureInMemoryRepository.findAllDataByFeature(featureId);
   }
 
   @Override
-  public Mono<FeatureData> recordData(FeatureData featureData) {
+  public FeatureData recordData(FeatureData featureData) {
     return featureInMemoryRepository.recordData(featureData);
   }
 }

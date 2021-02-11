@@ -9,9 +9,9 @@ import java.util.UUID;
 
 /** lara Created by Catalin on 2/11/2021 */
 public interface FeaturePort {
-  Flux<Feature> findAllByRoom(UUID roomId);
-
-  Mono<FeatureData> findLatestDataForFeature(UUID featureId);
+  Mono<Feature> create(Feature feature);
 
   Mono<FeatureData> recordData(FeatureData featureData);
+
+  Flux<Feature> findAllByRoom(UUID roomId);
 }

@@ -2,16 +2,17 @@ package com.smart.home.lara.core.application.port.secondary;
 
 import com.smart.home.lara.core.domain.Feature;
 import com.smart.home.lara.core.domain.FeatureData;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
+import java.util.List;
 import java.util.UUID;
 
 /** lara Created by Catalin on 2/11/2021 */
 public interface FeatureRepository {
-  Flux<Feature> findAllByRoom(UUID roomId);
+  Feature create(Feature feature);
 
-  Mono<FeatureData> findLatestDataForFeature(UUID featureId);
+  List<Feature> findAllByRoom(UUID roomId);
 
-  Mono<FeatureData> recordData(FeatureData featureData);
+  List<FeatureData> findAllDataByFeature(UUID featureId);
+
+  FeatureData recordData(FeatureData featureData);
 }

@@ -1,14 +1,15 @@
 package com.smart.home.lara.core.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
 /** lara Created by Catalin on 2/11/2021 */
-@Data
+@Getter
+@Setter
 public class Room {
-  private final UUID id;
-  private final String name;
-  private final Boolean enabled;
-  private final RoomType type;
+  private UUID id;
+  private String name;
+  private RoomType type;
 }
