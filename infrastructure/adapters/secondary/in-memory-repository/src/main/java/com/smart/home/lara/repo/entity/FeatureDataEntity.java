@@ -1,16 +1,17 @@
-package com.smart.home.lara.core.domain;
+package com.smart.home.lara.repo.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-/** lara Created by Catalin on 2/11/2021 */
+/** lara Created by Catalin on 2/12/2021 */
 @Getter
 @Setter
-public class FeatureData {
-  private UUID id;
+public class FeatureDataEntity {
+  @Id private UUID id;
   private Double value;
   private LocalDateTime recordedOn;
   private UUID featureId;

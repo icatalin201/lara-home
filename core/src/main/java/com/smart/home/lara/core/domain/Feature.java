@@ -12,6 +12,6 @@ public class Feature {
   private UUID id;
   private String name;
   private FeatureType type;
-  private Room room;
+  private UUID roomId;
   private FeatureData lastRecordedData;
 }

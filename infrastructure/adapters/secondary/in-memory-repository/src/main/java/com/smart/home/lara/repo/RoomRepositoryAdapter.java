@@ -2,7 +2,7 @@ package com.smart.home.lara.repo;
 
 import com.smart.home.lara.core.application.port.secondary.RoomRepository;
 import com.smart.home.lara.core.domain.Room;
-import com.smart.home.lara.repo.repository.RoomInMemoryRepository;
+import com.smart.home.lara.repo.repository.LaraInMemoryRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
@@ -12,15 +12,20 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class RoomRepositoryAdapter implements RoomRepository {
 
-  private final RoomInMemoryRepository roomInMemoryRepository;
+  private final LaraInMemoryRepository repository;
 
   @Override
-  public Room create(Room room) {
-    return roomInMemoryRepository.create(room);
+  public Mono<Room> create(Room room) {
+    return repository.createRoom(room);
   }
 
   @Override
-  public Room findById(UUID id) {
-    return roomInMemoryRepository.findById(id);
+  public Mono<Room> update(Room room) {
+    return repository.updateRoom(room);
+  }
+
+  @Override
+  public Mono<Room> findById(UUID id) {
+    return repository.findRoomById(id);
   }
 }

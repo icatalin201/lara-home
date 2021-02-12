@@ -1,3 +1,5 @@
+package com.smart.home.lara.application;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

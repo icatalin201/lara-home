@@ -4,8 +4,7 @@ import com.smart.home.lara.core.domain.RoomType;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.UUID;
 
 /** lara Created by Catalin on 2/11/2021 */
@@ -13,6 +12,7 @@ import java.util.UUID;
 @Setter
 public class RoomDto {
   private UUID id;
-  @NotBlank private String name;
-  @NotNull private RoomType type;
+  private String name;
+  private RoomType type;
+  private List<FeatureDto> features;
 }

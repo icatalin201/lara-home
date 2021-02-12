@@ -3,6 +3,7 @@ package com.smart.home.lara.core.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 /** lara Created by Catalin on 2/11/2021 */
@@ -12,4 +13,5 @@ public class Room {
   private UUID id;
   private String name;
   private RoomType type;
+  private List<Feature> features;
 }

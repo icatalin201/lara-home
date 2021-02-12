@@ -1,9 +1,9 @@
-package com.smart.home.lara.core.domain;
+package com.smart.home.lara.repo.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/** lara Created by Catalin on 2/11/2021 */
+/** lara Created by Catalin on 2/12/2021 */
 @Getter
 @RequiredArgsConstructor
 public enum FeatureType {
