@@ -22,11 +22,13 @@
         <module>infrastructure/spring-boot-application</module>
         <module>infrastructure/spring-boot-configuration</module>
         <module>infrastructure/adapters/primary/rest-api</module>
+        <module>infrastructure/adapters/primary/messaging-adapter</module>
         <module>infrastructure/adapters/secondary/in-memory-repository</module>
     </modules>
 
     <properties>
         <java.version>11</java.version>
+        <model-mapper.version>2.3.5</model-mapper.version>
         <revision>1.0.0</revision>
     </properties>
 
@@ -34,11 +36,24 @@
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
-            <version>2.3.5</version>
+            <version>${model-mapper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -51,15 +66,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-r2dbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.r2dbc</groupId>
-            <artifactId>r2dbc-h2</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -88,6 +94,26 @@
             <dependency>
                 <groupId>com.smart.home</groupId>
                 <artifactId>core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.smart.home</groupId>
+                <artifactId>rest-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.smart.home</groupId>
+                <artifactId>in-memory-repository</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.smart.home</groupId>
+                <artifactId>spring-boot-configuration</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.smart.home</groupId>
+                <artifactId>messaging-adapter</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>

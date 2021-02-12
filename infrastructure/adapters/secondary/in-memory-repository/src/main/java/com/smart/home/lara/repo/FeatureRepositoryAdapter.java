@@ -1,43 +1,69 @@
 package com.smart.home.lara.repo;
 
+import com.smart.home.lara.core.application.exception.FeatureNotFoundException;
 import com.smart.home.lara.core.application.port.secondary.FeatureRepository;
 import com.smart.home.lara.core.domain.Feature;
 import com.smart.home.lara.core.domain.FeatureData;
-import com.smart.home.lara.repo.repository.LaraInMemoryRepository;
+import com.smart.home.lara.repo.entity.FeatureDataEntity;
+import com.smart.home.lara.repo.entity.FeatureEntity;
+import com.smart.home.lara.repo.repository.FeatureDataJpaRepository;
+import com.smart.home.lara.repo.repository.FeatureJpaRepository;
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import org.modelmapper.ModelMapper;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /** lara Created by Catalin on 2/11/2021 */
 @RequiredArgsConstructor
 public class FeatureRepositoryAdapter implements FeatureRepository {
 
-  private final LaraInMemoryRepository repository;
+  private final ModelMapper modelMapper;
+  private final FeatureJpaRepository featureJpaRepository;
+  private final FeatureDataJpaRepository featureDataJpaRepository;
 
   @Override
-  public Mono<Feature> create(Feature feature) {
-    return repository.createFeature(feature);
+  @Transactional
+  public void create(Feature feature) {
+    FeatureEntity entity = modelMapper.map(feature, FeatureEntity.class);
+    featureJpaRepository.save(entity);
   }
 
   @Override
-  public Mono<Feature> findById(UUID id) {
-    return repository.findFeatureById(id);
+  @Transactional
+  public Feature findById(UUID id) {
+    Feature feature =
+        featureJpaRepository
+            .findById(id)
+            .map(featureEntity -> modelMapper.map(featureEntity, Feature.class))
+            .orElseThrow(FeatureNotFoundException::new);
+    feature.setDataHistory(findAllDataByFeature(id));
+    return feature;
   }
 
   @Override
-  public Flux<Feature> findAllByRoom(UUID roomId) {
-    return repository.findAllFeaturesByRoom(roomId);
+  @Transactional
+  public List<Feature> findAllByRoom(UUID roomId) {
+    return featureJpaRepository.findAllByRoomId(roomId).stream()
+        .map(featureEntity -> modelMapper.map(featureEntity, Feature.class))
+        .peek(feature -> feature.setDataHistory(findAllDataByFeature(feature.getId())))
+        .collect(Collectors.toList());
   }
 
   @Override
-  public Flux<FeatureData> findAllDataByFeature(UUID featureId) {
-    return repository.findAllDataByFeature(featureId);
+  @Transactional
+  public List<FeatureData> findAllDataByFeature(UUID featureId) {
+    return featureDataJpaRepository.findAllByFeatureId(featureId).stream()
+        .map(featureDataEntity -> modelMapper.map(featureDataEntity, FeatureData.class))
+        .collect(Collectors.toList());
   }
 
   @Override
-  public Mono<FeatureData> recordData(FeatureData featureData) {
-    return repository.recordData(featureData);
+  @Transactional
+  public void recordData(FeatureData featureData) {
+    FeatureDataEntity entity = modelMapper.map(featureData, FeatureDataEntity.class);
+    featureDataJpaRepository.save(entity);
   }
 }

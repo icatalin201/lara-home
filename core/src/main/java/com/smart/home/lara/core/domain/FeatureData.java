@@ -13,5 +13,5 @@ public class FeatureData {
   private UUID id;
   private Double value;
   private LocalDateTime recordedOn;
-  private UUID featureId;
+  private Feature feature;
 }

@@ -6,24 +6,16 @@
         <artifactId>lara</artifactId>
         <groupId>com.smart.home</groupId>
         <version>${revision}</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../../../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>spring-boot-configuration</artifactId>
+    <artifactId>messaging-adapter</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.smart.home</groupId>
             <artifactId>core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.smart.home</groupId>
-            <artifactId>rest-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.smart.home</groupId>
-            <artifactId>in-memory-repository</artifactId>
         </dependency>
     </dependencies>
 

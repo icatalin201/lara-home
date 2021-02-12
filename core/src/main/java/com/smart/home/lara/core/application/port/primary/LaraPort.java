@@ -2,15 +2,17 @@ package com.smart.home.lara.core.application.port.primary;
 
 import com.smart.home.lara.core.domain.Feature;
 import com.smart.home.lara.core.domain.Room;
-import reactor.core.publisher.Mono;
 
+import java.util.List;
 import java.util.UUID;
 
 /** lara Created by Catalin on 2/12/2021 */
 public interface LaraPort {
-  Mono<Room> createRoom(Room room);
+  void createRoom(Room room);
 
-  Mono<Room> findRoomById(UUID id);
+  void createFeature(UUID roomId, Feature feature);
 
-  Mono<Feature> createFeature(UUID roomId, Feature feature);
+  Room findRoomById(UUID id);
+
+  List<Room> findRooms();
 }

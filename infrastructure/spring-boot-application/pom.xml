@@ -12,4 +12,11 @@
     <artifactId>spring-boot-application</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.smart.home</groupId>
+            <artifactId>spring-boot-configuration</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
