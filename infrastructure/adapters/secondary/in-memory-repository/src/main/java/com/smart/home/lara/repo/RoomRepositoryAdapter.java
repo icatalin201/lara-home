@@ -47,6 +47,7 @@ public class RoomRepositoryAdapter implements RoomRepository {
   }
 
   @Override
+  @Transactional
   public List<Room> findAll() {
     return roomJpaRepository.findAll().stream()
         .map(roomEntity -> modelMapper.map(roomEntity, Room.class))
