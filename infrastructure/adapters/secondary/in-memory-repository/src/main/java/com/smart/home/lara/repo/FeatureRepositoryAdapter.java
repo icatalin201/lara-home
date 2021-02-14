@@ -28,6 +28,9 @@ public class FeatureRepositoryAdapter implements FeatureRepository {
   @Transactional
   public void create(Feature feature) {
     FeatureEntity entity = modelMapper.map(feature, FeatureEntity.class);
+    if (entity.getId() == null) {
+      entity.setId(UUID.randomUUID());
+    }
     featureJpaRepository.save(entity);
   }
 

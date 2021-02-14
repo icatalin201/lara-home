@@ -24,6 +24,9 @@ public class RoomRepositoryAdapter implements RoomRepository {
   @Transactional
   public void create(Room room) {
     RoomEntity entity = modelMapper.map(room, RoomEntity.class);
+    if (entity.getId() == null) {
+      entity.setId(UUID.randomUUID());
+    }
     roomJpaRepository.save(entity);
   }
 
