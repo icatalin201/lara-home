@@ -15,4 +15,6 @@ public interface LaraPort {
   Room findRoomById(UUID id);
 
   List<Room> findRooms();
+
+  List<Feature> findFeaturesByRoom(UUID roomId);
 }

@@ -50,6 +50,13 @@ public class LaraPortImpl implements LaraPort {
     return rooms;
   }
 
+  @Override
+  public List<Feature> findFeaturesByRoom(UUID roomId) {
+    List<Feature> features = featureRepository.findAllByRoom(roomId);
+    features.forEach(this::updateFeatureWithLastData);
+    return features;
+  }
+
   private void updateFeatureWithLastData(Feature feature) {
     FeatureData featureData =
         feature.getDataHistory().stream()

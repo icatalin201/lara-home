@@ -1,6 +1,8 @@
 package com.smart.home.lara.config;
 
+import com.smart.home.lara.core.application.port.primary.FeatureDataPort;
 import com.smart.home.lara.core.application.port.primary.LaraPort;
+import com.smart.home.lara.core.application.port.primary.impl.FeatureDataPortImpl;
 import com.smart.home.lara.core.application.port.primary.impl.LaraPortImpl;
 import com.smart.home.lara.core.application.port.secondary.FeatureRepository;
 import com.smart.home.lara.core.application.port.secondary.RoomRepository;
@@ -14,5 +16,10 @@ public class CoreConfiguration {
   @Bean
   public LaraPort laraPort(RoomRepository roomRepository, FeatureRepository featureRepository) {
     return new LaraPortImpl(roomRepository, featureRepository);
+  }
+
+  @Bean
+  public FeatureDataPort featureDataPort(FeatureRepository featureRepository) {
+    return new FeatureDataPortImpl(featureRepository);
   }
 }
