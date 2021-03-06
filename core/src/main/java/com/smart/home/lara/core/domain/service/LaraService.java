@@ -1,20 +1,21 @@
-package com.smart.home.lara.core.application.port.primary.impl;
+package com.smart.home.lara.core.domain.service;
+
+import com.smart.home.lara.core.application.exception.RoomNotFoundException;
+import com.smart.home.lara.core.application.port.primary.LaraPort;
+import com.smart.home.lara.core.application.port.secondary.FeatureRepository;
+import com.smart.home.lara.core.application.port.secondary.RoomRepository;
+import com.smart.home.lara.core.domain.model.Feature;
+import com.smart.home.lara.core.domain.model.FeatureData;
+import com.smart.home.lara.core.domain.model.Room;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
-import com.smart.home.lara.core.application.port.primary.LaraPort;
-import com.smart.home.lara.core.application.port.secondary.FeatureRepository;
-import com.smart.home.lara.core.application.port.secondary.RoomRepository;
-import com.smart.home.lara.core.domain.Feature;
-import com.smart.home.lara.core.domain.FeatureData;
-import com.smart.home.lara.core.domain.Room;
-import lombok.RequiredArgsConstructor;
-
 /** lara Created by Catalin on 2/12/2021 */
 @RequiredArgsConstructor
-public class LaraPortImpl implements LaraPort {
+public class LaraService implements LaraPort {
 
   private final RoomRepository roomRepository;
   private final FeatureRepository featureRepository;
@@ -33,7 +34,7 @@ public class LaraPortImpl implements LaraPort {
 
   @Override
   public Room findRoomById(UUID id) {
-    return roomRepository.findById(id);
+    return roomRepository.findById(id).orElseThrow(RoomNotFoundException::new);
   }
 
   @Override

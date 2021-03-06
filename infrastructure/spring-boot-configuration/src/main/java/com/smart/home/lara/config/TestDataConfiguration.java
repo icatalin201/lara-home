@@ -1,10 +1,10 @@
 package com.smart.home.lara.config;
 
 import com.smart.home.lara.core.application.port.primary.LaraPort;
-import com.smart.home.lara.core.domain.Feature;
-import com.smart.home.lara.core.domain.FeatureType;
-import com.smart.home.lara.core.domain.Room;
-import com.smart.home.lara.core.domain.RoomType;
+import com.smart.home.lara.core.domain.model.Feature;
+import com.smart.home.lara.core.domain.model.FeatureType;
+import com.smart.home.lara.core.domain.model.Room;
+import com.smart.home.lara.core.domain.model.RoomType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 

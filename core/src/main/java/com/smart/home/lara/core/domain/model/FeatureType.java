@@ -1,4 +1,4 @@
-package com.smart.home.lara.core.domain;
+package com.smart.home.lara.core.domain.model;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

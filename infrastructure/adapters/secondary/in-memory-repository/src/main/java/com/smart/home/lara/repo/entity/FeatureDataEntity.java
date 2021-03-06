@@ -25,7 +25,7 @@ public class FeatureDataEntity {
   private LocalDateTime recordedOn;
 
   @NotNull
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "feature_id", nullable = false)
   private FeatureEntity feature;
 }

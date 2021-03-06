@@ -1,6 +1,6 @@
 package com.smart.home.lara.api.dto;
 
-import com.smart.home.lara.core.domain.RoomType;
+import com.smart.home.lara.core.domain.model.RoomType;
 import lombok.Getter;
 import lombok.Setter;
 

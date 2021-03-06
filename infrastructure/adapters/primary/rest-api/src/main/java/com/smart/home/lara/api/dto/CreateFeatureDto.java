@@ -1,6 +1,6 @@
 package com.smart.home.lara.api.dto;
 
-import com.smart.home.lara.core.domain.FeatureType;
+import com.smart.home.lara.core.domain.model.FeatureType;
 import lombok.Getter;
 import lombok.Setter;
 

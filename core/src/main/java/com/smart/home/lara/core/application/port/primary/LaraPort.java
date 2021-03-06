@@ -1,7 +1,7 @@
 package com.smart.home.lara.core.application.port.primary;
 
-import com.smart.home.lara.core.domain.Feature;
-import com.smart.home.lara.core.domain.Room;
+import com.smart.home.lara.core.domain.model.Feature;
+import com.smart.home.lara.core.domain.model.Room;
 
 import java.util.List;
 import java.util.UUID;

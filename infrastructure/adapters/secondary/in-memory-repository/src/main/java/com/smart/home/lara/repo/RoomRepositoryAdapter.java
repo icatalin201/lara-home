@@ -1,8 +1,7 @@
 package com.smart.home.lara.repo;
 
-import com.smart.home.lara.core.application.exception.RoomNotFoundException;
 import com.smart.home.lara.core.application.port.secondary.RoomRepository;
-import com.smart.home.lara.core.domain.Room;
+import com.smart.home.lara.core.domain.model.Room;
 import com.smart.home.lara.repo.entity.RoomEntity;
 import com.smart.home.lara.repo.repository.RoomJpaRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -42,11 +42,10 @@ public class RoomRepositoryAdapter implements RoomRepository {
 
   @Override
   @Transactional
-  public Room findById(UUID id) {
+  public Optional<Room> findById(UUID id) {
     return roomJpaRepository
         .findById(id)
-        .map(roomEntity -> modelMapper.map(roomEntity, Room.class))
-        .orElseThrow(RoomNotFoundException::new);
+        .map(roomEntity -> modelMapper.map(roomEntity, Room.class));
   }
 
   @Override

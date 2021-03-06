@@ -1,4 +1,4 @@
-package com.smart.home.lara.core.domain;
+package com.smart.home.lara.core.domain.model;
 
 /** lara Created by Catalin on 2/11/2021 */
 public enum RoomType {

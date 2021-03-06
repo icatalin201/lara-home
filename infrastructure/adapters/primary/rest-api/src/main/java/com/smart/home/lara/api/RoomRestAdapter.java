@@ -5,8 +5,8 @@ import com.smart.home.lara.api.dto.CreateRoomDto;
 import com.smart.home.lara.api.dto.FeatureDto;
 import com.smart.home.lara.api.dto.RoomDto;
 import com.smart.home.lara.core.application.port.primary.LaraPort;
-import com.smart.home.lara.core.domain.Feature;
-import com.smart.home.lara.core.domain.Room;
+import com.smart.home.lara.core.domain.model.Feature;
+import com.smart.home.lara.core.domain.model.Room;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -40,6 +40,13 @@ public class RoomRestAdapter {
     laraPort.createRoom(room);
   }
 
+  @PostMapping("/{roomId}/features")
+  public void createFeature(
+          @Valid @PathVariable UUID roomId, @Valid @RequestBody CreateFeatureDto createFeatureDto) {
+    Feature feature = modelMapper.map(createFeatureDto, Feature.class);
+    laraPort.createFeature(roomId, feature);
+  }
+
   @GetMapping
   public Flux<RoomDto> findRooms() {
     List<Room> rooms = laraPort.findRooms();
@@ -50,13 +57,6 @@ public class RoomRestAdapter {
   public Mono<RoomDto> findRoomById(@Valid @PathVariable UUID roomId) {
     Room room = laraPort.findRoomById(roomId);
     return Mono.just(modelMapper.map(room, RoomDto.class));
-  }
-
-  @PostMapping("/{roomId}/features")
-  public void createFeature(
-      @Valid @PathVariable UUID roomId, @Valid @RequestBody CreateFeatureDto createFeatureDto) {
-    Feature feature = modelMapper.map(createFeatureDto, Feature.class);
-    laraPort.createFeature(roomId, feature);
   }
 
   @GetMapping("/{roomId}/features")

@@ -7,7 +7,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.TimeZone;
+import java.time.ZoneId;
 
 import static com.smart.home.lara.messaging.config.RabbitConfig.LARA_QUEUE;
 
@@ -15,6 +15,7 @@ import static com.smart.home.lara.messaging.config.RabbitConfig.LARA_QUEUE;
 @RequiredArgsConstructor
 public class MessageListener {
 
+  private static final ZoneId BUCHAREST_ZONE_ID = ZoneId.of("Europe/Bucharest");
   private final FeatureDataPort featureDataPort;
 
   @RabbitListener(queues = LARA_QUEUE)
@@ -26,7 +27,6 @@ public class MessageListener {
   }
 
   private LocalDateTime getLocalDateTimeFromTimestamp(Long timestamp) {
-    return LocalDateTime.ofInstant(
-        Instant.ofEpochMilli(timestamp), TimeZone.getDefault().toZoneId());
+    return LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), BUCHAREST_ZONE_ID);
   }
 }

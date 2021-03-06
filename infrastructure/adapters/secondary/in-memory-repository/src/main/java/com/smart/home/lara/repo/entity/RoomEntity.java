@@ -3,14 +3,11 @@ package com.smart.home.lara.repo.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /** lara Created by Catalin on 2/12/2021 */
@@ -29,4 +26,7 @@ public class RoomEntity {
   @Enumerated(EnumType.STRING)
   @Column(name = "room_type", nullable = false)
   private RoomType type;
+
+  @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<FeatureEntity> features = new ArrayList<>();
 }
