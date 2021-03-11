@@ -1,9 +1,9 @@
 package com.smart.home.lara.core.domain.model;
 
-import java.util.UUID;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.UUID;
 
 /** lara Created by Catalin on 2/11/2021 */
 @Getter

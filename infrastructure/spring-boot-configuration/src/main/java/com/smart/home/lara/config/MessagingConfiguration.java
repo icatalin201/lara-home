@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 /** lara Created by Catalin on 2/14/2021 */
 @Configuration
 @ComponentScan(basePackages = "com.smart.home.lara.messaging")
-public class MessagingAdapterConfig {
+public class MessagingConfiguration {
 
   @Bean
   public MessageListener messageListener(FeatureDataPort featureDataPort) {
